@@ -1,8 +1,11 @@
 package com.javarush.test.level17.lesson10.bonus01;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /* CRUD
 CrUD - Create, Update, Delete
@@ -35,6 +38,31 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        //start here - начни тут
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        try {
+            if(args[0].equals("-c")) {
+                if(args[2].equals("м")) {
+                    allPeople.add(Person.createMale(args[1],simpleDateFormat.parse(args[3])));
+                } else if(args[2].equals("ж")) {
+                    allPeople.add(Person.createFemale(args[1],simpleDateFormat.parse(args[3])));
+                }
+                System.out.println(allPeople.size()-1);
+            } else if(args[0].equals("-u")) {
+                if(args[3].equals("м")) {
+                    allPeople.set(Integer.parseInt(args[1]),Person.createMale(args[2],simpleDateFormat.parse(args[4])));
+                } else if(args[3].equals("ж")) {
+                    allPeople.set(Integer.parseInt(args[1]),Person.createFemale(args[2],simpleDateFormat.parse(args[4])));
+                }
+            } else if(args[0].equals("-d")) {
+                allPeople.get(Integer.parseInt(args[1])).setBirthDay(null);
+            } else if(args[0].equals("-i")) {
+                Person personPrint = allPeople.get(Integer.parseInt(args[1]));
+                SimpleDateFormat simple = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+                System.out.println(personPrint.getName() + " " + (personPrint.getSex().equals(Sex.MALE) ? "м" : "ж") + " "
+                                  + simple.format(personPrint.getBirthDay()));
+            }
+        } catch (ParseException e) {
+            e.getMessage();
+        }
     }
 }
