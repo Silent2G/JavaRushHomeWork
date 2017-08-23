@@ -14,9 +14,9 @@ package com.javarush.test.level18.lesson10.home05;
 -3.51 - -4
 */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
@@ -25,5 +25,23 @@ public class Solution {
         String nameTwo = reader.readLine();
         reader.close();
 
+        FileInputStream fileInputStream = new FileInputStream(nameOne);
+        byte[] buffer = new byte[fileInputStream.available()];
+        fileInputStream.read(buffer);
+        fileInputStream.close();
+
+        String text = new String(buffer);
+        Pattern pattern = Pattern.compile("[-]?\\d++(\\.\\d+)?");
+        Matcher matcher = pattern.matcher(text);
+
+        String result = "";
+        while (matcher.find()) {
+            result += Math.round(Double.parseDouble(text.substring(matcher.start(),matcher.end()))) + " ";
+        }
+        byte[] array = result.getBytes();
+
+        FileOutputStream fileOutputStream = new FileOutputStream(nameTwo);
+        fileOutputStream.write(array);
+        fileOutputStream.close();
     }
 }
