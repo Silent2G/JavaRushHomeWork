@@ -122,7 +122,9 @@ public class Solution {
                         user.setLastName(reader.readLine());
                     }
                     if("yes".equals(reader.readLine())) {
-                        user.setBirthDate(new Date(Integer.parseInt(reader.readLine()),Integer.parseInt(reader.readLine()),Integer.parseInt(reader.readLine())));
+                        user.setBirthDate(new Date(Integer.parseInt(reader.readLine()),
+                                Integer.parseInt(reader.readLine()),
+                                Integer.parseInt(reader.readLine())));
                     }
                     user.setMale("true".equals(reader.readLine()));
                     if("yes".equals(reader.readLine())) {

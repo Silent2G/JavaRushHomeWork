@@ -11,9 +11,9 @@ import java.io.*;
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String nameOne = reader.readLine();
-        String nameTwo = reader.readLine();
-        String nameThree = reader.readLine();
+        String nameOne = /*reader.readLine();*/ "C:/Users/admin/Desktop/a.txt";
+        String nameTwo = /*reader.readLine();*/ "C:/Users/admin/Desktop/b.txt";
+        String nameThree = /*reader.readLine();*/ "C:/Users/admin/Desktop/c.txt";
         reader.close();
 
         FileOutputStream outputStream = new FileOutputStream(nameOne);
